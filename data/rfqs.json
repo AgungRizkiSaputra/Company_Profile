@@ -1,0 +1,152 @@
+[
+  {
+    "id": "rfq-seed-001",
+    "referenceNumber": "VEL-2026-AK921",
+    "createdAt": "2026-10-26T09:13:05.120Z",
+    "companyName": "PT Astra Daihatsu Motor (Plant Karawang)",
+    "contactName": "Bambang Sudarmono, S.T. (Procurement Lead)",
+    "email": "bambang.procurement@daihatsu.astra.co.id",
+    "phone": "+6281289410294",
+    "followUpChannel": "whatsapp",
+    "deliveryDestination": "Kawasan Industri KIIC Lot C-4, Karawang Barat, Jawa Barat",
+    "targetTimeline": "Mendesak (Sebelum 10 November 2026)",
+    "notes": "Kebutuhan urgent untuk overhaul lini perakitan engine 3. Mohon sertakan Certificate of Origin (COO) dan garansi principal 12 bulan.",
+    "status": "in_review",
+    "adminNotes": "Spesifikasi telah dicocokkan dengan tim engineering. Menunggu kalkulasi biaya logistik ke Karawang.",
+    "estimatedValue": "Rp 148.500.000",
+    "items": [
+      {
+        "productName": "High-Pressure Pneumatic Control Valve DN50 PN40",
+        "category": "industrial-mro",
+        "quantity": 8,
+        "unit": "Unit",
+        "customSpecs": "Flange ANSI 300 RF, material stainless steel 316, seal PTFE."
+      },
+      {
+        "productName": "Armored Low-Voltage Power Cable Cu/XLPE/SWA/PVC 4x16 mm²",
+        "category": "electrical",
+        "quantity": 350,
+        "unit": "Meter",
+        "customSpecs": "Standar SPLN 43-2 / IEC 60502-1, drum kayu 500m."
+      }
+    ],
+    "attachments": [
+      {
+        "name": "BOQ_Overhaul_Engine3_Daihatsu.pdf",
+        "size": 1420500,
+        "type": "application/pdf"
+      }
+    ]
+  },
+  {
+    "id": "rfq-seed-002",
+    "referenceNumber": "VEL-2026-CP412",
+    "createdAt": "2026-10-26T06:13:05.120Z",
+    "companyName": "PT Chandra Asri Pacific Tbk",
+    "contactName": "Dewi Lestari (HSE & Safety Sourcing Specialist)",
+    "email": "dewi.lestari@capic.co.id",
+    "phone": "+628118029311",
+    "followUpChannel": "email",
+    "deliveryDestination": "Jl. Raya Anyer Km 123, Ciwandan, Cilegon, Banten",
+    "targetTimeline": "Reguler (2-3 minggu)",
+    "notes": "Pengadaan APD rutin Q4 Divisi Petrokimia. Wajib sertifikasi CE EN361 dan EN388. Pembayaran Tempo Net-45 hari via SKBDN.",
+    "status": "in_review",
+    "adminNotes": "",
+    "estimatedValue": "Rp 62.800.000",
+    "items": [
+      {
+        "productName": "Full-Body Industrial Safety Harness CE EN361 Certified",
+        "category": "safety-ppe",
+        "quantity": 45,
+        "unit": "Set",
+        "customSpecs": "Double lanyard dengan shock absorber, snap hook alloy steel."
+      },
+      {
+        "productName": "Heavy-Duty Nitrile Chemical-Resistant Gloves EN388",
+        "category": "safety-ppe",
+        "quantity": 300,
+        "unit": "Pasang",
+        "customSpecs": "Ukuran L & XL masing-masing 150 pasang, ketahanan solvent tinggi."
+      }
+    ],
+    "attachments": [
+      {
+        "name": "Spesifikasi_Teknis_APD_K3_2026.docx",
+        "size": 840200,
+        "type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      }
+    ]
+  },
+  {
+    "id": "rfq-seed-003",
+    "referenceNumber": "VEL-2026-WK803",
+    "createdAt": "2026-10-25T11:13:05.120Z",
+    "companyName": "PT Wijaya Karya Rekayasa Konstruksi",
+    "contactName": "Ir. Hendra Kusuma (Site Logistics Manager)",
+    "email": "hendra.kusuma@wikarekon.co.id",
+    "phone": "+6281315998201",
+    "followUpChannel": "whatsapp",
+    "deliveryDestination": "Proyek Smelter Feronikel, Morowali, Sulawesi Tengah",
+    "targetTimeline": "Mendesak (Ekspedisi Port to Port Surabaya-Morowali)",
+    "notes": "Pengiriman via kontainer 20ft pelabuhan Tanjung Perak. Penawaran harga sudah termasuk PPN 11% dan faktur pajak e-Faktur.",
+    "status": "quoted",
+    "adminNotes": "Surat Penawaran Harga (SPH/VEL-SPH-2026-089) resmi sudah dikirim via WhatsApp & Email ke Pak Hendra. Menunggu PO diterbitkan.",
+    "estimatedValue": "Rp 215.000.000",
+    "items": [
+      {
+        "productName": "Modular Industrial Conveyor Roller System Steel Dia 89mm",
+        "category": "industrial-mro",
+        "quantity": 120,
+        "unit": "Batang",
+        "customSpecs": "Panjang 600mm, bearing 6205-2RS, heavy duty zinc-plated."
+      },
+      {
+        "productName": "Programmable Logic Controller (PLC) Expansion Module",
+        "category": "it-hardware",
+        "quantity": 6,
+        "unit": "Unit",
+        "customSpecs": "16 Digital Input / 16 Relay Output, Modbus TCP."
+      }
+    ],
+    "attachments": [
+      {
+        "name": "Technical_Drawing_Conveyor_Smelter.pdf",
+        "size": 3200100,
+        "type": "application/pdf"
+      }
+    ]
+  },
+  {
+    "id": "rfq-seed-004",
+    "referenceNumber": "VEL-2026-KF198",
+    "createdAt": "2026-10-24T11:13:05.120Z",
+    "companyName": "PT Kalbe Farma Tbk (Cikarang Plant 2)",
+    "contactName": "Ferry Ardiansyah (Facility & General Supplies Buyer)",
+    "email": "ferry.ardiansyah@kalbe.co.id",
+    "phone": "+628170984210",
+    "followUpChannel": "email",
+    "deliveryDestination": "Kawasan Industri Delta Silicon 3, Lippo Cikarang",
+    "targetTimeline": "Tercapai sesuai PO",
+    "notes": "Kebutuhan konsolidasi inventaris kantor & cleanroom non-steril cabang Cikarang.",
+    "status": "completed",
+    "adminNotes": "Barang sudah diterima di Cikarang Plant 2. Dokumen BAST dan Faktur Pajak sudah dikonfirmasi finance.",
+    "estimatedValue": "Rp 41.250.000",
+    "items": [
+      {
+        "productName": "Commercial High-Yield 80 GSM Copy Paper (FSC Certified)",
+        "category": "facility-supplies",
+        "quantity": 500,
+        "unit": "Rim",
+        "customSpecs": "Kemasan box anti-lembab isi 5 rim/box (100 box total)."
+      },
+      {
+        "productName": "Heavy-Duty Modular Steel File Cabinet 4-Drawer Anti-Tilt",
+        "category": "facility-supplies",
+        "quantity": 12,
+        "unit": "Unit",
+        "customSpecs": "Finishing powder coating light grey, central keylock."
+      }
+    ],
+    "attachments": []
+  }
+]
