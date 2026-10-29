@@ -1,14 +1,9 @@
 import React from 'react';
-import Link from 'next/link';
 import { Locale } from '@/types/i18n';
 import { dictionaries } from '@/lib/i18n';
 import {
   ShieldAlert,
-  CheckCircle2,
-  Building2,
-  Compass,
-  ArrowRight,
-  Code2,
+  Award,
 } from 'lucide-react';
 import type { Metadata } from 'next';
 
@@ -40,107 +35,107 @@ export default async function AboutPage({ params }: Props) {
   const dict = dictionaries[lang].about;
 
   return (
-    <div className="space-y-20 py-12 md:py-16">
+    <div className="space-y-20 py-12 md:py-16 bg-[#f8fafc]">
       {/* Editorial Header */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="border-b border-neutral-200 pb-8">
-          <div className="text-xs font-mono uppercase tracking-widest text-blue-700 font-semibold">
-            CORPORATE PROFILE & VISION
+        <div className="border-b border-slate-200 pb-8 space-y-2">
+          <div className="text-xs font-mono uppercase tracking-widest text-amber-700 font-bold">
+            CORPORATE PROFILE & GOVERNANCE
           </div>
-          <h1 className="text-3xl sm:text-5xl font-black text-[#121316] tracking-tight mt-2 font-sans">
+          <h1 className="text-3xl sm:text-5xl font-black text-[#0b0f17] tracking-tight font-sans">
             {dict.title}
           </h1>
-          <p className="text-base text-neutral-600 max-w-3xl mt-3 leading-relaxed">
+          <p className="text-slate-600 text-sm sm:text-base max-w-3xl mt-2 leading-relaxed font-sans">
             {dict.subtitle}
           </p>
         </div>
+      </section>
 
-        {/* Narrative Section */}
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-10">
-          <div className="lg:col-span-4">
-            <span className="text-xs font-mono text-neutral-400 uppercase tracking-wider font-semibold">
-              ORIGIN & PURPOSE
-            </span>
-            <h2 className="text-2xl font-bold text-[#121316] mt-2 leading-snug">
+      {/* Brand Narrative & Mission */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="lg:col-span-7 space-y-6">
+            <h2 className="text-2xl sm:text-3xl font-black text-[#0b0f17] font-sans tracking-tight">
               {dict.storyTitle}
             </h2>
+            <div className="space-y-4 text-xs sm:text-sm text-slate-700 leading-relaxed font-sans">
+              <p>{dict.storyP1}</p>
+              <p>{dict.storyP2}</p>
+              <p>{dict.storyP3}</p>
+            </div>
           </div>
-          <div className="lg:col-span-8 space-y-5 text-sm text-neutral-700 leading-relaxed font-sans">
-            <p>{dict.storyP1}</p>
-            <p>{dict.storyP2}</p>
-            <p>{dict.storyP3}</p>
+
+          <div className="lg:col-span-5 bg-white border border-slate-200 rounded-lg p-6 sm:p-7 shadow-subtle space-y-4">
+            <h3 className="text-xs font-mono uppercase tracking-wider font-bold text-[#0b0f17] border-b border-slate-100 pb-3 flex items-center gap-2">
+              <Award className="w-4 h-4 text-amber-600" />
+              <span>Legalitas Badan Usaha</span>
+            </h3>
+            <div className="space-y-2.5 font-mono text-xs">
+              <div className="flex justify-between py-1 border-b border-slate-50">
+                <span className="text-slate-500">Bentuk Usaha</span>
+                <span className="font-bold text-slate-900">Perseroan Terbatas (PT)</span>
+              </div>
+              <div className="flex justify-between py-1 border-b border-slate-50">
+                <span className="text-slate-500">Nomor Induk Berusaha</span>
+                <span className="font-bold text-slate-900">022020819281</span>
+              </div>
+              <div className="flex justify-between py-1 border-b border-slate-50">
+                <span className="text-slate-500">KBLI Operasional</span>
+                <span className="font-bold text-slate-900">4659, 4663, 4669</span>
+              </div>
+              <div className="flex justify-between py-1 border-b border-slate-50">
+                <span className="text-slate-500">Status Perpajakan</span>
+                <span className="font-bold text-emerald-600">PKP Terverifikasi DJP</span>
+              </div>
+              <div className="flex justify-between py-1">
+                <span className="text-slate-500">Sertifikasi Manajemen</span>
+                <span className="font-bold text-amber-600">ISO 9001:2015 Registered</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Core Operating Principles */}
-      <section className="bg-neutral-900 text-white py-16 border-y border-neutral-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-12">
-            <span className="text-xs font-mono uppercase tracking-widest text-blue-400 font-semibold">
-              ORGANIZATIONAL GOVERNANCE
-            </span>
-            <h2 className="text-3xl font-black tracking-tight mt-2 text-white">
-              {dict.principlesTitle}
-            </h2>
+      {/* Operational Principles */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-2xl mx-auto space-y-2 mb-10">
+          <div className="text-xs font-mono uppercase tracking-widest text-amber-700 font-bold">
+            FOUNDATIONAL VALUES
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {dict.principles.map((p, idx) => (
-              <div
-                key={idx}
-                className="p-6 bg-neutral-800/50 border border-neutral-700/60 rounded-xs space-y-3"
-              >
-                <div className="text-xs font-mono text-blue-400 font-bold">
-                  0{idx + 1}
-                </div>
-                <h3 className="text-base font-bold text-white">{p.title}</h3>
-                <p className="text-xs text-neutral-400 leading-relaxed">{p.desc}</p>
-              </div>
-            ))}
-          </div>
+          <h2 className="text-2xl sm:text-3xl font-black text-[#0b0f17] font-mono">
+            {dict.principlesTitle}
+          </h2>
         </div>
-      </section>
 
-      {/* Transparency & Demo Disclosure Box */}
-      <section id="transparency" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white border-2 border-neutral-900 p-8 sm:p-10 rounded-xs shadow-md space-y-6">
-          <div className="flex items-start gap-3">
-            <div className="p-2 bg-blue-100 text-blue-900 rounded-xs">
-              <ShieldAlert className="w-6 h-6" />
-            </div>
-            <div>
-              <div className="text-xs font-mono font-bold uppercase tracking-widest text-blue-700">
-                PORTFOLIO TRANSPARENCY PROTOCOL
-              </div>
-              <h2 className="text-2xl font-black text-[#121316] tracking-tight mt-1">
-                {dict.demoDisclosureTitle}
-              </h2>
-            </div>
-          </div>
-
-          <p className="text-sm text-neutral-700 leading-relaxed">
-            {dict.demoDisclosureDesc}
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-neutral-200">
-            {dict.demoPoints.map((point, idx) => (
-              <div key={idx} className="flex items-start gap-2.5 text-xs text-neutral-800">
-                <CheckCircle2 className="w-4 h-4 text-neutral-500 shrink-0 mt-0.5" />
-                <span className="leading-normal">{point}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="pt-4 border-t border-neutral-100 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-neutral-500">
-            <span>Stack: Next.js 16 App Router, TypeScript, Tailwind CSS v4, Supabase PostgreSQL</span>
-            <Link
-              href={`/${lang}/contact`}
-              className="text-blue-700 hover:text-blue-900 font-semibold inline-flex items-center gap-1"
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {dict.principles.map((pr, i) => (
+            <div
+              key={i}
+              className="bg-white border border-slate-200 rounded-lg p-6 shadow-subtle space-y-3"
             >
-              <span>{lang === 'id' ? 'Tinjau Kanal Kontak Demo' : 'Inspect Demo Contact Channels'}</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+              <div className="text-xs font-mono font-bold text-amber-700">PRINCIPIO 0{i + 1}</div>
+              <h3 className="text-base font-bold text-[#0b0f17] font-mono">
+                {pr.title}
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed font-sans">
+                {pr.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Portfolio Project Transparency Note */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-slate-50 border border-slate-200 rounded-lg p-6 sm:p-8 flex flex-col md:flex-row items-start gap-4">
+          <ShieldAlert className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+          <div className="space-y-1 text-xs">
+            <div className="font-bold font-mono text-slate-900 uppercase tracking-wider">
+              {dict.demoDisclosureTitle}
+            </div>
+            <p className="text-slate-600 leading-relaxed font-sans">
+              {dict.demoDisclosureDesc}
+            </p>
           </div>
         </div>
       </section>

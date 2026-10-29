@@ -8,18 +8,15 @@ import { ProductCard } from '@/components/ProductCard';
 import {
   ArrowRight,
   ShieldCheck,
-  PackageCheck,
   Layers,
-  Sparkles,
-  HelpCircle,
   FileSpreadsheet,
-  CheckCircle2,
   Building2,
   Clock,
-  Truck,
+  Search,
+  Sparkles,
+  ArrowUpRight,
   FileText,
-  BadgePercent,
-  Check,
+  ChevronRight,
 } from 'lucide-react';
 import type { Metadata } from 'next';
 
@@ -50,32 +47,32 @@ export default async function HomePage({ params }: Props) {
   const lang = (resolved.lang === 'id' ? 'id' : 'en') as Locale;
   const dict = dictionaries[lang];
 
-  // Pick 1 featured product per category
+  // Featured representative products (1 per category)
   const featuredProducts = [
-    products[0], // Valve
-    products[2], // PLC
-    products[4], // Harness
-    products[6], // Paper
+    products[0], // Pneumatic Valve (Industrial MRO)
+    products[2], // PLC Module (Electrical)
+    products[4], // Safety Harness (Safety PPE)
+    products[6], // Copy Paper Pallet (Facility)
   ];
 
   return (
-    <div className="space-y-20 pb-20 bg-[#F4F6F9] selection:bg-amber-500 selection:text-slate-950 font-sans">
-      {/* 1. HERO SECTION (Industrial General Trading Desk) */}
-      <section className="relative pt-10 md:pt-16 border-b border-slate-300 bg-white bg-blueprint-grid">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-20">
+    <div className="space-y-24 pb-24 bg-[#f8fafc] text-[#090d16] font-sans selection:bg-[#0b0f17] selection:text-white">
+      {/* 1. HERO SECTION (Architectural Editorial B2B Trading Desk) */}
+      <section className="relative pt-8 sm:pt-12 md:pt-16 pb-16 md:pb-24 border-b border-slate-200 bg-white overflow-hidden bg-precision-grid">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            {/* Left Column: Headline & Corporate CTAs */}
+            {/* Left Column: Mission & Core Action */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-800 text-xs font-mono tracking-wider uppercase rounded-xs font-semibold">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/10 border border-amber-500/25 text-amber-900 text-xs font-mono font-semibold tracking-wider uppercase rounded-xs">
                 <span className="w-2 h-2 rounded-full bg-amber-600 animate-pulse" />
                 <span>
                   {lang === 'id'
-                    ? 'PT Velmora Niaga Nusantara • Mitra Pengadaan B2B & Kontraktor Pasokan'
-                    : 'PT Velmora Niaga Nusantara • Industrial Procurement & General Supply'}
+                    ? 'PT Velmora Niaga Nusantara • Mitra Pengadaan B2B Terakreditasi'
+                    : 'PT Velmora Niaga Nusantara • Accredited B2B Procurement Partner'}
                 </span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0A192F] tracking-tight leading-[1.12]">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0b0f17] tracking-tight leading-[1.12]">
                 {dict.home.heroHeadline}
               </h1>
 
@@ -84,10 +81,10 @@ export default async function HomePage({ params }: Props) {
               </p>
 
               {/* Action Buttons */}
-              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
                 <Link
                   href={`/${lang}/quote`}
-                  className="inline-flex items-center justify-center gap-2 bg-[#0A192F] hover:bg-slate-800 text-white text-xs font-mono font-bold uppercase tracking-wider px-6 py-4 rounded-sm transition-all shadow-md border border-slate-800"
+                  className="inline-flex items-center justify-center gap-2.5 bg-[#0b0f17] hover:bg-slate-800 text-white text-xs font-mono font-bold uppercase tracking-wider px-6 py-4 rounded-md transition-all shadow-subtle hover:shadow-elevation border border-slate-800"
                 >
                   <FileSpreadsheet className="w-4 h-4 text-amber-400" />
                   <span>{dict.home.ctaQuote}</span>
@@ -96,71 +93,102 @@ export default async function HomePage({ params }: Props) {
 
                 <Link
                   href={`/${lang}/products`}
-                  className="inline-flex items-center justify-center gap-2 bg-white text-slate-800 hover:text-amber-700 border border-slate-300 hover:border-amber-600 text-xs font-mono font-bold uppercase tracking-wider px-6 py-4 rounded-sm transition-all shadow-xs"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-slate-800 hover:text-amber-700 border border-slate-300 hover:border-amber-600 text-xs font-mono font-bold uppercase tracking-wider px-6 py-4 rounded-md transition-all shadow-xs"
                 >
+                  <Search className="w-4 h-4 text-slate-500" />
                   <span>{dict.home.ctaCatalog}</span>
                 </Link>
               </div>
 
-              {/* Corporate Credential Metrics */}
-              <div className="pt-6 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
-                <div className="bg-slate-50 p-3.5 rounded-sm border border-slate-200">
-                  <div className="text-sm font-bold text-[#0A192F] font-mono flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                    <span>Faktur Pajak e-Faktur</span>
-                  </div>
-                  <div className="text-xs text-slate-500 mt-1">
-                    PKP DJP Resmi & Dokumen BAST Lengkap
+              {/* Live Metric Badges */}
+              <div className="pt-6 border-t border-slate-200/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-mono">
+                <div>
+                  <div className="text-xl sm:text-2xl font-black text-[#0b0f17]">100%</div>
+                  <div className="text-slate-500 text-[11px] leading-tight mt-0.5">
+                    {lang === 'id' ? 'Faktur Pajak DJP Resmi' : 'Valid VAT e-Faktur'}
                   </div>
                 </div>
-
-                <div className="bg-slate-50 p-3.5 rounded-sm border border-slate-200">
-                  <div className="text-sm font-bold text-[#0A192F] font-mono flex items-center gap-1.5">
-                    <Clock className="w-4 h-4 text-amber-600 shrink-0" />
-                    <span>SLA SPH &lt; 24 Jam</span>
-                  </div>
-                  <div className="text-xs text-slate-500 mt-1">
-                    Respon Cepat Tim Engineering & Sourcing
+                <div>
+                  <div className="text-xl sm:text-2xl font-black text-amber-600">&le; 24 Jam</div>
+                  <div className="text-slate-500 text-[11px] leading-tight mt-0.5">
+                    {lang === 'id' ? 'Respons Resmi Penawaran' : 'Guaranteed RFQ SLA'}
                   </div>
                 </div>
-
-                <div className="bg-slate-50 p-3.5 rounded-sm border border-slate-200">
-                  <div className="text-sm font-bold text-[#0A192F] font-mono flex items-center gap-1.5">
-                    <Truck className="w-4 h-4 text-blue-600 shrink-0" />
-                    <span>Tempo Korporasi</span>
+                <div>
+                  <div className="text-xl sm:text-2xl font-black text-[#0b0f17]">Net 30/60</div>
+                  <div className="text-slate-500 text-[11px] leading-tight mt-0.5">
+                    {lang === 'id' ? 'Tempo Pembayaran PT/CV' : 'Corporate Credit Terms'}
                   </div>
-                  <div className="text-xs text-slate-500 mt-1">
-                    Fasilitas Net-30 / 60 Hari & SKBDN
+                </div>
+                <div>
+                  <div className="text-xl sm:text-2xl font-black text-emerald-600">ISO 9001</div>
+                  <div className="text-slate-500 text-[11px] leading-tight mt-0.5">
+                    {lang === 'id' ? 'Kendali Mutu Terverifikasi' : 'Quality Audited Supply'}
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Right Column: Hero Operations Image */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative aspect-4/3 w-full rounded-sm overflow-hidden border border-slate-300 shadow-xl bg-slate-900">
-                <Image
-                  src="/images/hero/hero-procurement.jpg"
-                  alt="Operasional pengadaan pasokan industri: katup, kabel daya berpelindung, APD keselamatan, dan instrumentasi"
-                  fill
-                  priority
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 45vw"
-                />
-                {/* Floating Technical Overlay */}
-                <div className="absolute bottom-4 left-4 right-4 bg-[#0A192F]/95 backdrop-blur-md border border-slate-700 p-4 rounded-sm shadow-lg text-white">
-                  <div className="flex items-center justify-between text-xs font-mono">
-                    <span className="font-bold text-amber-400 flex items-center gap-1.5">
-                      <ShieldCheck className="w-4 h-4 text-amber-400" />
-                      {dict.home.badgeVerified}
-                    </span>
-                    <span className="text-slate-400">SNI / IEC / ANSI Conformity</span>
+            {/* Right Column: Industrial Visual & Architectural Blueprint Sheet */}
+            <div className="lg:col-span-5">
+              <div className="relative rounded-lg overflow-hidden border border-slate-300 bg-white shadow-elevation">
+                {/* Visual Header */}
+                <div className="relative aspect-4/3 w-full bg-slate-900 overflow-hidden">
+                  <Image
+                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80"
+                    alt="Industrial Procurement & Quality Inspection"
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                    className="object-cover opacity-90 contrast-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b0f17]/90 via-transparent to-black/30" />
+                  
+                  {/* Overlay Badges */}
+                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white font-mono text-[11px]">
+                    <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-xs px-2.5 py-1 rounded border border-white/20">
+                      <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+                      <span>QC Inspection Passed</span>
+                    </div>
+                    <span className="text-slate-300">Spec ANSI / DIN Standard</span>
                   </div>
-                  <p className="mt-1 text-[11px] text-slate-300 leading-normal">
-                    {lang === 'id'
-                      ? 'Seluruh spesifikasi material dan suku cadang diperiksa oleh quality desk sebelum pengiriman dari distribution hub.'
-                      : 'All engineering specifications verified prior to dispatch from distribution hubs.'}
-                  </p>
+                </div>
+
+                {/* Sourcing Summary Card */}
+                <div className="p-6 bg-slate-900 text-slate-200 font-mono text-xs space-y-4">
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                    <span className="text-amber-400 font-bold uppercase tracking-wider flex items-center gap-2">
+                      <FileText className="w-4 h-4" />
+                      Multi-Category Procurement Matrix
+                    </span>
+                    <span className="text-[10px] text-slate-400 bg-slate-800 px-2 py-0.5 rounded">
+                      SINGLE INVOICE
+                    </span>
+                  </div>
+
+                  <div className="space-y-2.5 text-[11px]">
+                    <div className="flex items-center justify-between p-2 rounded bg-slate-800/70 border border-slate-700/60">
+                      <span className="text-slate-300 font-sans">1. Industrial Valves & Pneumatics</span>
+                      <span className="text-emerald-400 font-bold">READY STOCK</span>
+                    </div>
+                    <div className="flex items-center justify-between p-2 rounded bg-slate-800/70 border border-slate-700/60">
+                      <span className="text-slate-300 font-sans">2. Multi-Core Armored Cables & PLC</span>
+                      <span className="text-emerald-400 font-bold">READY STOCK</span>
+                    </div>
+                    <div className="flex items-center justify-between p-2 rounded bg-slate-800/70 border border-slate-700/60">
+                      <span className="text-slate-300 font-sans">3. Certified Harnesses & Safety PPE</span>
+                      <span className="text-emerald-400 font-bold">READY STOCK</span>
+                    </div>
+                    <div className="flex items-center justify-between p-2 rounded bg-slate-800/70 border border-slate-700/60">
+                      <span className="text-slate-300 font-sans">4. Corporate Facility & Consumables</span>
+                      <span className="text-emerald-400 font-bold">READY STOCK</span>
+                    </div>
+                  </div>
+
+                  <div className="pt-2 flex items-center justify-between text-[10.5px] text-slate-400 border-t border-slate-800">
+                    <span>Konsolidasi Gudang Pusat Cikarang</span>
+                    <span className="text-amber-400">Tempo Net 30/60 Days</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -168,251 +196,340 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      {/* 2. FOUR CORE PROCUREMENT DIVISIONS */}
+      {/* 2. VALUE PROPOSITION: B2B Procurement Pillars */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="border-b border-slate-300 pb-4 mb-8">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-14">
           <div className="text-xs font-mono uppercase tracking-widest text-amber-700 font-bold">
-            01 / DIVISI PASOKAN INDUSTRI
+            ARCHITECTED FOR CORPORATE GOVERNANCE
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-[#0A192F] tracking-tight mt-1">
-            {dict.home.categorySectionTitle}
+          <h2 className="text-2xl sm:text-4xl font-black text-[#0b0f17] tracking-tight">
+            {lang === 'id'
+              ? 'Mengapa Tim Procurement Memilih Velmora?'
+              : 'Why Enterprise Procurement Desks Rely on Velmora'}
           </h2>
-          <p className="text-sm text-slate-600 mt-1 max-w-3xl">
-            {dict.home.categorySectionSubtitle}
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+            {lang === 'id'
+              ? 'Kami memangkas friksi administrasi, mempercepat lead-time pengadaan, dan menjamin keaslian teknis setiap material dari pabrikan terverifikasi.'
+              : 'We reduce administrative friction, accelerate procurement lead-times, and guarantee factory-grade conformance across multi-category orders.'}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {[
-            {
-              id: 'industrial-supplies',
-              code: 'DIV.01',
-              title_en: 'Industrial Supplies & MRO',
-              title_id: 'Pasokan Industri & MRO',
-              desc_en: 'Control valves, conveyor rollers, piping flanges, high-wear mechanical spares.',
-              desc_id: 'Katup kontrol DN50-DN200, roller konveyor baja, flensa perpipaan, dan suku cadang mekanikal pabrik.',
-            },
-            {
-              id: 'electrical-electronics',
-              code: 'DIV.02',
-              title_en: 'Electrical & Power Systems',
-              title_id: 'Sistem Elektrikal & Tenaga',
-              desc_en: 'Industrial automation PLCs, multi-core armored XLPE cables, circuit breakers.',
-              desc_id: 'Kabel daya berpelindung Cu/XLPE/SWA/PVC berstandar PLN, modul PLC otomasi industri, dan komponen panel.',
-            },
-            {
-              id: 'safety-ppe',
-              code: 'DIV.03',
-              title_en: 'Certified Safety Gear (PPE/K3)',
-              title_id: 'Keselamatan Kerja (K3 / APD)',
-              desc_en: 'Ergonomic fall harnesses, chemical nitrile gloves, eye & respiratory gear.',
-              desc_id: 'Full-body safety harness sertifikasi CE EN361, sarung tangan kimia nitril EN388, dan alat pelindung diri standar Depnaker.',
-            },
-            {
-              id: 'office-supplies',
-              code: 'DIV.04',
-              title_en: 'Corporate Facility Supplies',
-              title_id: 'Konsolidasi Fasilitas & Kantor',
-              desc_en: 'Pallet-load copy paper, heavy-gauge archival steel cabinets, janitorial consumables.',
-              desc_id: 'Kertas HVS komersial kuantitas palet (FSC Certified), lemari arsip baja tahan api, dan perlengkapan fasilitas operasional.',
-            },
-          ].map((cat) => (
-            <Link
-              key={cat.id}
-              href={`/${lang}/products?cat=${cat.id}`}
-              className="group p-6 bg-white border border-slate-300 hover:border-amber-600 transition-all rounded-sm flex flex-col justify-between shadow-xs hover:shadow-md"
-            >
-              <div>
-                <span className="text-[11px] font-mono font-bold text-slate-400 group-hover:text-amber-600 transition-colors">
-                  {cat.code}
-                </span>
-                <h3 className="text-base font-bold text-[#0A192F] mt-2 group-hover:text-amber-700 transition-colors">
-                  {lang === 'id' ? cat.title_id : cat.title_en}
-                </h3>
-                <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                  {lang === 'id' ? cat.desc_id : cat.desc_en}
-                </p>
-              </div>
-              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-mono font-bold text-slate-800">
-                <span>{lang === 'id' ? 'Lihat Spesifikasi' : 'View Components'}</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-amber-600" />
-              </div>
-            </Link>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Card 1 */}
+          <div className="bg-white border border-slate-200/90 rounded-lg p-6 shadow-subtle hover:border-slate-400 transition-all space-y-4">
+            <div className="w-12 h-12 rounded-md bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-600">
+              <Layers className="w-6 h-6" />
+            </div>
+            <h3 className="text-base font-bold text-[#0b0f17] font-mono">
+              {lang === 'id' ? 'Konsolidasi Single Vendor' : 'Single-Vendor Consolidation'}
+            </h3>
+            <p className="text-xs text-slate-600 leading-relaxed font-sans">
+              {lang === 'id'
+                ? 'Gabungkan kebutuhan teknis, suku cadang MRO, APD K3, dan kertas fasilitas dalam satu PO resmi, satu tagihan, dan satu faktur pajak.'
+                : 'Consolidate mechanical components, electrical spares, safety gear, and office consumables under a single PO and tax invoice.'}
+            </p>
+          </div>
+
+          {/* Card 2 */}
+          <div className="bg-white border border-slate-200/90 rounded-lg p-6 shadow-subtle hover:border-slate-400 transition-all space-y-4">
+            <div className="w-12 h-12 rounded-md bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-600">
+              <ShieldCheck className="w-6 h-6" />
+            </div>
+            <h3 className="text-base font-bold text-[#0b0f17] font-mono">
+              {lang === 'id' ? 'Sertifikasi & Kepatuhan Penuh' : 'Full Compliance & Certification'}
+            </h3>
+            <p className="text-xs text-slate-600 leading-relaxed font-sans">
+              {lang === 'id'
+                ? 'Seluruh produk dilengkapi Certificate of Conformance (COC), Mill Test Certificate (MTC), atau sertifikat uji laboratorium standar SNI/ANSI.'
+                : 'Every delivery is accompanied by Certificate of Conformance (COC), Mill Test Certificate, or ISO/ANSI certified lab reports.'}
+            </p>
+          </div>
+
+          {/* Card 3 */}
+          <div className="bg-white border border-slate-200/90 rounded-lg p-6 shadow-subtle hover:border-slate-400 transition-all space-y-4">
+            <div className="w-12 h-12 rounded-md bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-600">
+              <Clock className="w-6 h-6" />
+            </div>
+            <h3 className="text-base font-bold text-[#0b0f17] font-mono">
+              {lang === 'id' ? 'SLA Penawaran < 24 Jam' : '< 24hr Quotation SLA'}
+            </h3>
+            <p className="text-xs text-slate-600 leading-relaxed font-sans">
+              {lang === 'id'
+                ? 'Daftar penawaran harga resmi (RFQ) terperinci lengkap dengan ketersediaan stok, lead-time pengiriman, dan validitas harga diterbitkan tepat waktu.'
+                : 'Structured formal quotation with inventory status, logistics lead-time, and price validity issued within guaranteed timeframe.'}
+            </p>
+          </div>
+
+          {/* Card 4 */}
+          <div className="bg-white border border-slate-200/90 rounded-lg p-6 shadow-subtle hover:border-slate-400 transition-all space-y-4">
+            <div className="w-12 h-12 rounded-md bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-600">
+              <Building2 className="w-6 h-6" />
+            </div>
+            <h3 className="text-base font-bold text-[#0b0f17] font-mono">
+              {lang === 'id' ? 'Fasilitas Termin Korporasi' : 'Corporate Credit Terms'}
+            </h3>
+            <p className="text-xs text-slate-600 leading-relaxed font-sans">
+              {lang === 'id'
+                ? 'Dukungan termin pembayaran Net-30 hingga Net-60 hari kerja untuk badan usaha PT/CV terdaftar setelah proses verifikasi kredit singkat.'
+                : 'Net-30 and Net-60 working day billing cycles available for accredited enterprise entities after rapid credit appraisal.'}
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* 3. FEATURED SOURCING ITEMS (Live RFQ Adders) */}
+      {/* 3. FOUR CORE PRODUCT CATEGORIES */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-slate-300 pb-4 mb-8 gap-4">
+        <div className="border-b border-slate-200 pb-5 mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
             <div className="text-xs font-mono uppercase tracking-widest text-amber-700 font-bold">
-              02 / KATALOG PENGADAAN UTAMA
+              SYSTEMATIC PROCUREMENT CATALOG
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-[#0A192F] tracking-tight mt-1">
-              {lang === 'id' ? 'Komponen Pengadaan Siap Kutip' : 'Core Procurement Components'}
+            <h2 className="text-2xl sm:text-3xl font-black text-[#0b0f17] tracking-tight mt-1">
+              {lang === 'id' ? '4 Sektor Pasokan Utama' : '4 Core Supply Sectors'}
             </h2>
-            <p className="text-sm text-slate-600 mt-1">
-              {lang === 'id'
-                ? 'Pilih item dan tentukan kuantitas yang dibutuhkan untuk langsung diajukan dalam formulir RFQ resmi.'
-                : 'Add line items directly to your formal RFQ quotation with customized quantities.'}
-            </p>
           </div>
           <Link
             href={`/${lang}/products`}
-            className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase text-[#0A192F] hover:text-amber-700"
+            className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#0b0f17] hover:text-amber-600 transition-colors uppercase tracking-wider"
           >
-            <span>{lang === 'id' ? 'Buka Seluruh Katalog' : 'View Full Catalog'}</span>
-            <ArrowRight className="w-3.5 h-3.5 text-amber-600" />
+            <span>{lang === 'id' ? 'Lihat Seluruh Katalog' : 'Browse Entire Catalog'}</span>
+            <ArrowRight className="w-4 h-4 text-amber-500" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Sector 1 */}
+          <Link
+            href={`/${lang}/products?cat=industrial-supplies`}
+            className="group bg-white border border-slate-200/90 rounded-lg p-5 shadow-subtle hover:border-amber-500 transition-all flex flex-col justify-between"
+          >
+            <div className="space-y-3">
+              <div className="text-[10px] font-mono text-amber-700 font-bold tracking-wider">SECTOR 01</div>
+              <h3 className="text-base font-bold text-[#0b0f17] group-hover:text-amber-600 transition-colors font-mono">
+                {lang === 'id' ? 'Pasokan Industri & MRO' : 'Industrial Supplies & MRO'}
+              </h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                {lang === 'id'
+                  ? 'Katup kendali pneumatik, conveyor roller baja galvanis, bearing industri, dan perkakas pabrik.'
+                  : 'Pneumatic control valves, conveyor rollers, industrial bearings, and specialized mechanical spares.'}
+              </p>
+            </div>
+            <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-mono font-semibold text-slate-700 group-hover:text-amber-600">
+              <span>2 Komponen Inti</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-amber-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </div>
+          </Link>
+
+          {/* Sector 2 */}
+          <Link
+            href={`/${lang}/products?cat=electrical-electronics`}
+            className="group bg-white border border-slate-200/90 rounded-lg p-5 shadow-subtle hover:border-amber-500 transition-all flex flex-col justify-between"
+          >
+            <div className="space-y-3">
+              <div className="text-[10px] font-mono text-amber-700 font-bold tracking-wider">SECTOR 02</div>
+              <h3 className="text-base font-bold text-[#0b0f17] group-hover:text-amber-600 transition-colors font-mono">
+                {lang === 'id' ? 'Elektrikal & Otomasi' : 'Electrical & Automation'}
+              </h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                {lang === 'id'
+                  ? 'Modul PLC rel DIN, kabel daya tegangan rendah berpelindung XLPE/SWA, inverter, dan kontaktor.'
+                  : 'DIN rail PLC modules, multi-core XLPE armored cables, motor inverters, and heavy-duty switchgear.'}
+              </p>
+            </div>
+            <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-mono font-semibold text-slate-700 group-hover:text-amber-600">
+              <span>2 Komponen Inti</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-amber-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </div>
+          </Link>
+
+          {/* Sector 3 */}
+          <Link
+            href={`/${lang}/products?cat=safety-ppe`}
+            className="group bg-white border border-slate-200/90 rounded-lg p-5 shadow-subtle hover:border-amber-500 transition-all flex flex-col justify-between"
+          >
+            <div className="space-y-3">
+              <div className="text-[10px] font-mono text-amber-700 font-bold tracking-wider">SECTOR 03</div>
+              <h3 className="text-base font-bold text-[#0b0f17] group-hover:text-amber-600 transition-colors font-mono">
+                {lang === 'id' ? 'Keselamatan Kerja (K3 / PPE)' : 'Safety & PPE Gear'}
+              </h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                {lang === 'id'
+                  ? 'Body harness anti-jatuh ANSI Z359.11, sarung tangan nitril tahan kimia/sayatan, respirator, dan helm pelindung.'
+                  : 'Fall-protection harnesses, chemical resistant nitrile gloves, certified hard hats, and respiratory PPE.'}
+              </p>
+            </div>
+            <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-mono font-semibold text-slate-700 group-hover:text-amber-600">
+              <span>2 Komponen Inti</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-amber-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </div>
+          </Link>
+
+          {/* Sector 4 */}
+          <Link
+            href={`/${lang}/products?cat=office-supplies`}
+            className="group bg-white border border-slate-200/90 rounded-lg p-5 shadow-subtle hover:border-amber-500 transition-all flex flex-col justify-between"
+          >
+            <div className="space-y-3">
+              <div className="text-[10px] font-mono text-amber-700 font-bold tracking-wider">SECTOR 04</div>
+              <h3 className="text-base font-bold text-[#0b0f17] group-hover:text-amber-600 transition-colors font-mono">
+                {lang === 'id' ? 'Fasilitas & Kantor Korporat' : 'Office & Facility Supplies'}
+              </h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                {lang === 'id'
+                  ? 'Kertas fotokopi 80gsm kuantitas palet (200 rim), lemari arsip baja modular SPCC anti-terbalik, dan perkantoran.'
+                  : 'Pallet-grade 80gsm copy paper (200 reams), heavy-gauge SPCC steel filing cabinets, and consumables.'}
+              </p>
+            </div>
+            <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-mono font-semibold text-slate-700 group-hover:text-amber-600">
+              <span>2 Komponen Inti</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-amber-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </div>
+          </Link>
+        </div>
+      </section>
+
+      {/* 4. FEATURED PRODUCTS (Editorial Cards with Live Specs) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="border-b border-slate-200 pb-5 mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <div className="text-xs font-mono uppercase tracking-widest text-amber-700 font-bold">
+              TECHNICAL PRECISION SAMPLES
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black text-[#0b0f17] tracking-tight mt-1">
+              {lang === 'id' ? 'Sampel Spesifikasi Produk Pengadaan' : 'Featured Technical Inventory Samples'}
+            </h2>
+          </div>
+          <Link
+            href={`/${lang}/products`}
+            className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#0b0f17] hover:text-amber-600 transition-colors uppercase tracking-wider"
+          >
+            <span>{lang === 'id' ? 'Buka Katalog Penuh (8 Produk)' : 'Open Full Catalog (8 Items)'}</span>
+            <ChevronRight className="w-4 h-4 text-amber-500" />
           </Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {featuredProducts.map((p) => (
-            <ProductCard key={p.id} product={p} lang={lang} />
+            <ProductCard key={p.slug} product={p} lang={lang} />
           ))}
         </div>
       </section>
 
-      {/* 4. VALUE PROPOSITION (Strategic Enterprise Positioning) */}
-      <section className="bg-[#0A192F] text-white py-20 border-y border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-12">
-            <span className="text-xs font-mono uppercase tracking-widest text-amber-400 font-bold">
-              03 / KEUNGGULAN STRATEGIS
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-black tracking-tight mt-2 text-white">
-              {dict.home.positioningTitle}
+      {/* 5. PROCUREMENT WORKFLOW: 4-STEP STREAMLINED ENGINE */}
+      <section className="bg-white border-y border-slate-200 py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="text-center max-w-2xl mx-auto space-y-3">
+            <div className="text-xs font-mono uppercase tracking-widest text-amber-700 font-bold">
+              STANDARDIZED OPERATING PROTOCOL
+            </div>
+            <h2 className="text-2xl sm:text-4xl font-black text-[#0b0f17] tracking-tight">
+              {lang === 'id'
+                ? 'Alur Pengajuan Penawaran (RFQ) B2B'
+                : 'B2B Request for Quotation (RFQ) Workflow'}
             </h2>
-            <p className="text-slate-400 mt-2 text-base leading-relaxed">
-              {dict.home.positioningSubtitle}
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              {lang === 'id'
+                ? 'Dari draft spesifikasi teknis hingga pengiriman dan penagihan tempo resmi.'
+                : 'From initial technical specification to dispatch, verification, and corporate Net billing.'}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {dict.home.positioningBullets.map((bullet, idx) => (
-              <div
-                key={idx}
-                className="bg-[#0F243C] border border-slate-700/80 p-6 rounded-sm space-y-3 shadow-md"
-              >
-                <div className="w-8 h-8 rounded-sm bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center font-mono text-xs font-bold">
-                  0{idx + 1}
-                </div>
-                <h3 className="text-base font-bold text-white">{bullet.title}</h3>
-                <p className="text-xs text-slate-300 leading-relaxed font-sans">{bullet.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. PROCUREMENT LIFECYCLE (4 Structured Steps) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="border-b border-slate-300 pb-4 mb-10">
-          <div className="text-xs font-mono uppercase tracking-widest text-amber-700 font-bold">
-            04 / TATA CARA KERJA SAMA
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-[#0A192F] tracking-tight mt-1">
-            {dict.home.processTitle}
-          </h2>
-          <p className="text-sm text-slate-600 mt-1">{dict.home.processSubtitle}</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {dict.home.processSteps.map((step) => (
-            <div
-              key={step.number}
-              className="bg-white border border-slate-300 p-6 rounded-sm space-y-4 hover:border-amber-600 transition-colors shadow-xs"
-            >
-              <div className="text-2xl font-black font-mono text-amber-600">
-                {step.number}
-              </div>
-              <h3 className="text-base font-bold text-[#0A192F] leading-snug">
-                {step.title}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Step 1 */}
+            <div className="relative p-6 bg-slate-50 border border-slate-200 rounded-lg space-y-3">
+              <div className="text-3xl font-black font-mono text-slate-300">01</div>
+              <h3 className="text-sm font-bold text-[#0b0f17] font-mono">
+                {lang === 'id' ? 'Pilih Item & Spesifikasi' : 'Compile Items & Specs'}
               </h3>
-              <p className="text-xs text-slate-600 leading-relaxed">{step.desc}</p>
+              <p className="text-xs text-slate-600 leading-relaxed font-sans">
+                {lang === 'id'
+                  ? 'Pilih dari katalog standar atau lampirkan lembar spesifikasi kustom, Bill of Quantities (BOQ), atau tender document.'
+                  : 'Select standard items or attach custom BOM/BOQ spreadsheets with target delivery timelines.'}
+              </p>
             </div>
-          ))}
+
+            {/* Step 2 */}
+            <div className="relative p-6 bg-slate-50 border border-slate-200 rounded-lg space-y-3">
+              <div className="text-3xl font-black font-mono text-amber-600">02</div>
+              <h3 className="text-sm font-bold text-[#0b0f17] font-mono">
+                {lang === 'id' ? 'Review & Evaluasi SLA < 24 Jam' : 'Review & SLA < 24h'}
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed font-sans">
+                {lang === 'id'
+                  ? 'Petugas teknis Velmora memverifikasi ketersediaan stok, kepatuhan sertifikasi, dan menyusun surat penawaran harga resmi bertanda tangan.'
+                  : 'Our engineering desk confirms availability, certification compliance, and issues an official formal quotation.'}
+              </p>
+            </div>
+
+            {/* Step 3 */}
+            <div className="relative p-6 bg-slate-50 border border-slate-200 rounded-lg space-y-3">
+              <div className="text-3xl font-black font-mono text-slate-300">03</div>
+              <h3 className="text-sm font-bold text-[#0b0f17] font-mono">
+                {lang === 'id' ? 'Penerbitan PO & Kontrak Kerja' : 'Purchase Order Validation'}
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed font-sans">
+                {lang === 'id'
+                  ? 'Klien menerbitkan Purchase Order resmi perusahaan. Fasilitas termin Net-30/60 aktif untuk entitas terverifikasi.'
+                  : 'Client issues official corporate PO. Credit terms (Net-30/60) applied upon corporate verification.'}
+              </p>
+            </div>
+
+            {/* Step 4 */}
+            <div className="relative p-6 bg-slate-50 border border-slate-200 rounded-lg space-y-3">
+              <div className="text-3xl font-black font-mono text-emerald-600">04</div>
+              <h3 className="text-sm font-bold text-[#0b0f17] font-mono">
+                {lang === 'id' ? 'Pengiriman & Berita Acara (BAST)' : 'Delivery & BAST Handover'}
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed font-sans">
+                {lang === 'id'
+                  ? 'Pengiriman langsung ke lokasi proyek/pabrik disertai Berita Acara Serah Terima (BAST) dan e-Faktur Pajak resmi.'
+                  : 'Direct delivery to site/plant backed by official BAST handover report, MTC certificates, and VAT e-Faktur.'}
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 6. BESPOKE SOURCING BANNER */}
+      {/* 6. CALL TO ACTION BANNER (Enterprise Procurement Desk) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#0C1B2E] text-white p-8 md:p-12 rounded-sm border border-slate-700 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 shadow-xl">
-          <div className="space-y-3 max-w-3xl">
-            <div className="inline-flex items-center gap-1.5 text-xs font-mono text-amber-400 uppercase tracking-widest font-bold">
+        <div className="bg-[#0b0f17] border border-slate-800 text-white rounded-xl p-8 sm:p-12 lg:p-14 relative overflow-hidden shadow-elevation">
+          <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-radial from-amber-500/10 to-transparent pointer-events-none" />
+
+          <div className="relative z-10 max-w-3xl space-y-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/15 border border-amber-500/30 text-amber-400 text-xs font-mono font-semibold uppercase tracking-wider rounded-xs">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Sourcing Material Khusus & Spesifikasi Kustom</span>
+              <span>{lang === 'id' ? 'Solusi Pengadaan Kustom & Tender' : 'Custom Sourcing & Tender Inquiries'}</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
-              {dict.home.customSourcingTitle}
+
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
+              {lang === 'id'
+                ? 'Membutuhkan Spesifikasi Khusus di Luar Katalog?'
+                : 'Require Specialized Industrial Specs Outside Our Catalog?'}
             </h2>
-            <p className="text-sm text-slate-300 leading-relaxed">
-              {dict.home.customSourcingSubtitle}
+
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+              {lang === 'id'
+                ? 'Tim sourcing teknis kami siap mencarikan material khusus, suku cadang langka impor, atau konsolidasi tender skala besar. Cukup kirimkan dokumen Bill of Quantities (BOQ).'
+                : 'Our technical sourcing desk procures bespoke mechanical parts, imported specialty spares, or large-scale tender packages. Simply attach your BOM/BOQ spreadsheet.'}
             </p>
-          </div>
-          <Link
-            href={`/${lang}/quote`}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 px-6 py-4 rounded-sm font-mono text-xs font-bold uppercase tracking-wider shrink-0 transition-all shadow-lg"
-          >
-            <span>{dict.home.customSourcingCta}</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </section>
 
-      {/* 7. FREQUENTLY ASKED QUESTIONS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="border-b border-slate-300 pb-4 mb-8">
-          <div className="text-xs font-mono uppercase tracking-widest text-amber-700 font-bold">
-            05 / INFORMASI KONTRAK & FAQ
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-[#0A192F] tracking-tight mt-1">
-            {dict.home.faqTitle}
-          </h2>
-          <p className="text-sm text-slate-600 mt-1">{dict.home.faqSubtitle}</p>
-        </div>
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              <Link
+                href={`/${lang}/quote`}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-mono font-bold uppercase tracking-wider rounded-md transition-all shadow-md"
+              >
+                <FileSpreadsheet className="w-4 h-4" />
+                <span>{lang === 'id' ? 'Ajukan Dokumen Kustom (RFQ)' : 'Submit Custom Sourcing RFQ'}</span>
+              </Link>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {dict.home.faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="bg-white border border-slate-300 p-6 rounded-sm space-y-2 hover:border-amber-600 transition-colors shadow-xs"
-            >
-              <h3 className="text-sm font-bold text-[#0A192F] flex items-start gap-2">
-                <HelpCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-                <span>{faq.q}</span>
-              </h3>
-              <p className="text-xs text-slate-600 leading-relaxed pl-6">{faq.a}</p>
+              <Link
+                href={`/${lang}/contact`}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 text-xs font-mono font-semibold uppercase tracking-wider rounded-md transition-all"
+              >
+                <span>{lang === 'id' ? 'Hubungi Technical Desk' : 'Contact Technical Desk'}</span>
+                <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
+              </Link>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 8. BOTTOM CALL TO ACTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white border-2 border-slate-300 p-8 sm:p-12 text-center rounded-sm space-y-4 shadow-sm">
-          <h2 className="text-2xl sm:text-3xl font-black text-[#0A192F] tracking-tight">
-            {dict.home.ctaSectionTitle}
-          </h2>
-          <p className="text-slate-600 text-sm max-w-xl mx-auto">
-            {dict.home.ctaSectionSubtitle}
-          </p>
-          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href={`/${lang}/quote`}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#0A192F] hover:bg-slate-800 text-white px-8 py-3.5 rounded-sm font-mono text-xs font-bold uppercase tracking-wider transition-all shadow-md"
-            >
-              <FileSpreadsheet className="w-4 h-4 text-amber-400" />
-              <span>{dict.home.ctaQuote}</span>
-              <ArrowRight className="w-4 h-4 text-amber-400" />
-            </Link>
-            <Link
-              href={`/${lang}/contact`}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white text-slate-800 border border-slate-300 hover:border-amber-600 px-8 py-3.5 rounded-sm font-mono text-xs font-bold uppercase tracking-wider transition-all shadow-xs"
-            >
-              <span>{lang === 'id' ? 'Hubungi Meja Koordinasi' : 'Contact Sourcing Desk'}</span>
-            </Link>
           </div>
         </div>
       </section>

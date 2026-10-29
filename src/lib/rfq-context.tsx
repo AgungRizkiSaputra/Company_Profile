@@ -18,8 +18,8 @@ interface RfqContextType {
   removeItem: (id: string) => void;
   clearItems: () => void;
   itemCount: number;
-  lastSubmission: any;
-  setLastSubmission: (data: any) => void;
+  lastSubmission: Record<string, unknown> | null;
+  setLastSubmission: (data: Record<string, unknown> | null) => void;
 }
 
 const RfqContext = createContext<RfqContextType | undefined>(undefined);
@@ -28,42 +28,41 @@ const STORAGE_KEY = 'velmora_rfq_items_v1';
 const SUBMISSION_KEY = 'velmora_last_submission_v1';
 
 export function RfqProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<RfqItem[]>([]);
-  const [lastSubmission, setLastSubmissionState] = useState<any>(null);
-  const [isHydrated, setIsHydrated] = useState(false);
-
-  // Hydrate from localStorage once mounted
-  useEffect(() => {
+  const [items, setItems] = useState<RfqItem[]>(() => {
+    if (typeof window === 'undefined') return [];
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed)) {
-          setItems(parsed);
-        }
+        if (Array.isArray(parsed)) return parsed;
       }
-      const storedSubmission = localStorage.getItem(SUBMISSION_KEY);
-      if (storedSubmission) {
-        setLastSubmissionState(JSON.parse(storedSubmission));
-      }
-    } catch (e) {
-      console.warn('Failed to parse stored RFQ items from localStorage:', e);
-    } finally {
-      setIsHydrated(true);
+    } catch {
+      // Ignore initial render
     }
-  }, []);
+    return [];
+  });
+
+  const [lastSubmission, setLastSubmissionState] = useState<Record<string, unknown> | null>(() => {
+    if (typeof window === 'undefined') return null;
+    try {
+      const stored = localStorage.getItem(SUBMISSION_KEY);
+      if (stored) return JSON.parse(stored);
+    } catch {
+      // Ignore initial render
+    }
+    return null;
+  });
 
   // Sync to localStorage
   useEffect(() => {
-    if (!isHydrated) return;
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
     } catch (e) {
       console.warn('Failed to save RFQ items to localStorage:', e);
     }
-  }, [items, isHydrated]);
+  }, [items]);
 
-  const setLastSubmission = (data: any) => {
+  const setLastSubmission = (data: Record<string, unknown> | null) => {
     setLastSubmissionState(data);
     try {
       if (data) {

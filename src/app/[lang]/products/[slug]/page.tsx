@@ -1,7 +1,6 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import { Locale } from '@/types/i18n';
-import { dictionaries } from '@/lib/i18n';
 import { products, getProductBySlug } from '@/lib/products-data';
 import { ProductDetailClient } from '@/components/ProductDetailClient';
 import type { Metadata } from 'next';

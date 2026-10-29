@@ -2,11 +2,12 @@
 
 import React, { useState, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Product, ProductCategory } from '@/types/product';
+import { Product } from '@/types/product';
 import { Locale } from '@/types/i18n';
 import { dictionaries } from '@/lib/i18n';
 import { ProductCard } from '@/components/ProductCard';
-import { Search, Filter, AlertCircle, Info } from 'lucide-react';
+import { Search, Filter, Layers, FileSpreadsheet } from 'lucide-react';
+import Link from 'next/link';
 
 interface Props {
   products: Product[];
@@ -59,33 +60,41 @@ export function ProductsCatalogClient({ products, lang }: Props) {
   return (
     <div className="space-y-8">
       {/* Search & Filter Toolbar */}
-      <div className="bg-white border border-neutral-200 p-4 rounded-xs shadow-xs space-y-4">
+      <div className="bg-white border border-slate-200 p-5 rounded-lg shadow-subtle space-y-4">
         <div className="flex flex-col md:flex-row gap-3">
           {/* Search Input */}
           <div className="relative grow">
-            <Search className="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={dict.searchPlaceholder}
-              className="w-full pl-10 pr-4 py-2.5 text-sm border border-neutral-200 rounded-xs focus:outline-hidden focus:border-blue-600 bg-neutral-50/50"
+              className="w-full pl-10 pr-16 py-2.5 text-sm border border-slate-200 rounded-md focus:outline-hidden focus:border-amber-500 bg-slate-50/60 font-sans transition-colors"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-mono text-neutral-400 hover:text-black"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono text-slate-400 hover:text-black font-semibold"
               >
                 Clear
               </button>
             )}
           </div>
+
+          <Link
+            href={`/${lang}/quote`}
+            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#0b0f17] text-white text-xs font-mono font-semibold uppercase tracking-wider rounded-md hover:bg-slate-800 transition-colors shrink-0"
+          >
+            <FileSpreadsheet className="w-4 h-4 text-amber-400" />
+            <span>{lang === 'id' ? 'Item Khusus / BOQ' : 'Custom Sourcing'}</span>
+          </Link>
         </div>
 
         {/* Category Filter Pills */}
-        <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-neutral-100">
-          <span className="text-xs font-mono text-neutral-400 mr-1 flex items-center gap-1">
-            <Filter className="w-3 h-3" />
+        <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-slate-100">
+          <span className="text-xs font-mono text-slate-500 mr-1 flex items-center gap-1 font-semibold">
+            <Filter className="w-3.5 h-3.5 text-amber-600" />
             Category:
           </span>
           {categories.map((cat) => {
@@ -95,10 +104,10 @@ export function ProductsCatalogClient({ products, lang }: Props) {
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`text-xs font-mono px-3 py-1.5 rounded-xs transition-colors ${
+                className={`text-xs font-mono px-3.5 py-1.5 rounded-md transition-all ${
                   active
-                    ? 'bg-[#121316] text-white font-semibold'
-                    : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
+                    ? 'bg-[#0b0f17] text-white font-bold shadow-xs'
+                    : 'bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium'
                 }`}
               >
                 {label}
@@ -108,39 +117,47 @@ export function ProductsCatalogClient({ products, lang }: Props) {
         </div>
       </div>
 
-      {/* B2B Quotation Protocol Notice */}
-      <div className="bg-blue-50/60 border-l-4 border-blue-600 p-4 rounded-xs flex items-start gap-3">
-        <Info className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+      {/* Results Count & Active Status */}
+      <div className="flex items-center justify-between text-xs font-mono text-slate-500 px-1">
         <div>
-          <h4 className="text-xs font-mono font-bold uppercase tracking-wide text-blue-900">
-            {dict.b2bNoticeTitle}
-          </h4>
-          <p className="text-xs text-blue-800/90 mt-0.5 leading-relaxed">
-            {dict.b2bNoticeDesc}
-          </p>
+          Showing <span className="font-bold text-slate-900">{filteredProducts.length}</span> of {products.length} standard items
         </div>
+        {searchQuery && (
+          <div>
+            Filtered by keyword: <span className="font-bold text-amber-600">&ldquo;{searchQuery}&rdquo;</span>
+          </div>
+        )}
       </div>
 
       {/* Products Grid */}
       {filteredProducts.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {filteredProducts.map((p) => (
-            <ProductCard key={p.id} product={p} lang={lang} />
+            <ProductCard key={p.slug} product={p} lang={lang} />
           ))}
         </div>
       ) : (
-        <div className="bg-white border border-neutral-200 p-12 text-center rounded-xs space-y-3">
-          <AlertCircle className="w-8 h-8 text-neutral-400 mx-auto" />
-          <h3 className="text-base font-bold text-neutral-800">{dict.noResults}</h3>
-          <button
-            onClick={() => {
-              setSearchQuery('');
-              setSelectedCategory('all');
-            }}
-            className="text-xs font-mono uppercase tracking-wider text-blue-600 hover:underline"
-          >
-            Reset Filters
-          </button>
+        <div className="bg-white border border-slate-200 rounded-lg p-12 text-center space-y-4 shadow-subtle">
+          <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center mx-auto text-slate-400">
+            <Layers className="w-6 h-6" />
+          </div>
+          <h3 className="text-base font-bold text-slate-900 font-mono">
+            {dict.noResults}
+          </h3>
+          <p className="text-xs text-slate-500 max-w-md mx-auto">
+            {lang === 'id'
+              ? 'Item yang Anda cari belum tercatat di katalog standar. Anda dapat memasukkan spesifikasi kustom langsung ke dalam draft RFQ.'
+              : 'The requested item is not in our standard stock list. You can input custom specifications directly into your RFQ.'}
+          </p>
+          <div className="pt-2">
+            <Link
+              href={`/${lang}/quote`}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-mono font-bold uppercase tracking-wider rounded-md transition-colors"
+            >
+              <FileSpreadsheet className="w-4 h-4" />
+              <span>{lang === 'id' ? 'Ajukan Custom RFQ' : 'Submit Custom RFQ'}</span>
+            </Link>
+          </div>
         </div>
       )}
     </div>

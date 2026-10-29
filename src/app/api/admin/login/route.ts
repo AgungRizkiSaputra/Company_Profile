@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
     });
 
     return response;
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json(
       { success: false, error: 'Terjadi kesalahan internal saat autentikasi.' },
       { status: 500 }

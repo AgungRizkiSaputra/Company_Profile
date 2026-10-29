@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
       stats,
       data: all,
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error fetching admin RFQs:', error);
     return NextResponse.json(
       { success: false, error: 'Gagal mengambil data permintaan pengadaan.' },
